@@ -1,49 +1,317 @@
-/* src/style.css */
-
-/* Baseline */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: 'Urbanist', system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --color-red: #E05F4D;
+  --color-yellow: #EACD5D;
+  --color-green: #739A65;
+  --color-purple: #7456A8;
+
+  --color-white: #FFFFFF;
+  --color-black: #000000;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+/* font */
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/src/Branding/fonts/Urbanist-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
 }
 
-#app {
-  min-height: 100vh;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-/* Layout */
-.page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 
-/* YOUR background (SVG) */
-.bg {
+   body {
+    margin: 0;
+    min-height: 100vh;
+  
+    background-image: var(--bg-url);
+    background-repeat: no-repeat;
+    background-position: right 3vw bottom 3vw;
+    background-size: clamp(180px, 18vw, 360px) auto;
+  
+    background-color: var(--color-white);
+  }
+
+  /* WORKING BACKGROUND — DO NOT TOUCH */
+.brand-bg {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -1;        /* behind everything */
   pointer-events: none;
-
-  background-image: var(--bg-url);
-  background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: 605px 495px; /* matches your svg */
+  overflow: hidden;
+  background: #fff;
 }
 
-/* Make header/nav sit above background */
-.site-header {
-  position: sticky; /* optional; change to static if you don't want sticky */
-  top: 0;
+.brand-bg img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  /* SCALE UP: bigger and responsive */
+  width: min(1100px, 65vw);  /* increase this if you want even bigger */
+  height: auto;
+
+  /* keeps it anchored bottom-right but visible */
+  transform: translate(18%, 12%); /* less push offscreen than before */
+  transform-origin: bottom right;
+  display: block;
+}
+/* app wrapper */
+#app {
+  position: relative;
+  z-index: 0;
+  background: transparent;
+  min-height: calc(100vh - 140px);
+}
+
+/* =========================
+   HEADER / NAV (HIS)
+   ========================= */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 1rem;
+  background-color: var(--color-white);
+}
+
+.header_nav {
+  display: flex;
+  align-items: center;
+  gap: 64px;            /* controls spacing between links */
+  padding-right: 100px; /* keeps nav away from edge like your screenshot */
+}
+
+.header_nav > a {
+  margin-right: 0;      /* REMOVE the giant spacing */
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #000000;
+  font-weight: 500;
+}
+
+.dropbtn {
+  margin-right: 0;      /* REMOVE the giant spacing */
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #000000;
+  font-weight: 200;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.header_img_left {
+  flex: 0 0 auto;
+  padding-left: 100px;
+}
+
+.logo {
+  height: 3em;
+  width: auto;
+  transition: filter 300ms;
+}
+
+
+
+/* dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn::after {
+  content: "▾";
+  font-size: 1em;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+  width: max-content;
+
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1),
+              0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  border: 2px solid #ddd;
+
   z-index: 10;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Main content grows, footer stays at bottom */
-.site-main {
-  flex: 1;
+.dropdown.open .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f4f2f2;
+}
+
+/* =========================
+   FOOTER (HIS + LINE INPUT)
+   ========================= */
+.site-footer {
+  background-color: var(--color-purple);
+  color: var(--color-white);
+  width: 100%;
+  padding: 24px 40px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer_logo {
+  height: 3em;
+  width: auto;
+}
+
+.footer_nav {
+  display: flex;
+  gap: 48px;
+  margin-right: 70px;
+}
+
+.footer_nav a {
+  text-decoration: none;
+  color: var(--color-white);
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.footer-divider {
+  border: none;
+  width: 97%;
+  border-top: 1px solid white;
+  margin: 20px 0;
+}
+
+.footer-middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.footer-bottom p {
+  margin: 6px 0;
+  font-size: 1.2rem;
+}
+
+.footer-right {
+  max-width: 360px;
+  margin-right: 150px;
+}
+
+.footer-title {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-label {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+
+.footer-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,0.85);
+  padding: 8px 0;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.footer-input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.footer-input:focus {
+  border-bottom-color: white;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 2rem;
+  background-color: var(--color-purple);
+}
+
+
+/* ===== underline hover effect for NAV links (header + footer) ===== */
+.header_nav a,
+.footer_nav a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;   /* space for the underline */
+}
+
+.header_nav a::after,
+.footer_nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+
+  background: currentColor;      /* uses the link color automatically */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.header_nav a:hover::after,
+.footer_nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.slack-icon,
+.linkedin-icon,
+.insta-icon {
+  width: 1em;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #020202;
+    background-color: #ffffff;
+  }
 }

@@ -7,7 +7,131 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <!-- BACKGROUND -->
+    <div class="brand-bg" aria-hidden="true">
+      <img src="/src/assets/brand-bg.svg" alt="" />
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header_img_left">
+        <img
+          src="/src/Branding/logos/c-coca_Long Logo-Black.png"
+          alt="ccoca"
+          class="logo"
+        />
+      </div>
+
+      <nav class="header_nav" aria-label="Primary">
+        <a href="#sponsor">Sponsor</a>
+        <a href="#contact">Contact</a>
+        <a href="#services">Services</a>
+
+        <div class="dropdown">
+          <button
+            class="dropbtn"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            About
+          </button>
+
+          <div class="dropdown-content" role="menu">
+            <a href="#home" role="menuitem">Home</a>
+            <a href="#hero" role="menuitem">Hero Page</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main id="app"></main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <img
+          src="/src/Branding/logos/c-coca_Long Logo-White.png"
+          alt="ccoca"
+          class="footer_logo"
+        />
+
+        <nav class="footer_nav" aria-label="Footer">
+          <a href="#contact">Contact</a>
+          <a href="#services">Services</a>
+          <a href="#sponsor">Sponsor</a>
+        </nav>
+      </div>
+
+      <hr class="footer-divider" />
+
+      <div class="footer-middle">
+        <div class="footer-left">
+          <p>2095 Ohio Union
+          <br/>1739 N High Street 
+          <br />Columbus ohio 43201</p>
+          <p>CCOCADesigns@gmail.com</p>
+        </div>
+
+        <div class="footer-right">
+          <p class="footer-title">Sign up for our newsletter</p>
+
+          <form class="footer-form">
+            <label class="footer-label" for="newsletter-email">Type in email address*</label>
+            <input
+              id="newsletter-email"
+              type="email"
+              class="footer-input"
+              placeholder="your@email.com"
+            />
+          </form>
+        </div>
+      </div>
+
+      <hr class="footer-divider" />
+
+      <div class="footer-bottom">
+        <nav class="footer-bottom-nav" aria-label="Social links">
+          <a
+            href="https://www.instagram.com/ccocadesigns"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/src/Branding/logos/Instagram_logo.png"
+              alt="instagram"
+              class="insta-icon"
+            />
+          </a>
+
+          <a
+            href="https://join.slack.com/t/cccoca/shared_invite/zt-3megxjl9u-DRGbfaYg3RtKeodU6XUOOA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/src/Branding/logos/Slack.png"
+              alt="slack"
+              class="slack-icon"
+            />
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/ccoca-designs-a740a53a1/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/src/Branding/logos/linkdin.png"
+              alt="linkedin"
+              class="linkedin-icon"
+            />
+          </a>
+        </nav>
+      </div>
+    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
